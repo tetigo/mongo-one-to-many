@@ -1,0 +1,54 @@
+POST http://localhost:3000/product
+Content-Type: application/json
+
+{
+    "name": "Soda",
+    "quantity": 12,
+    "deparments": ["Beverages", "Checkout"]
+}
+
+### 
+
+POST http://localhost:3000/product
+Content-Type: application/json
+
+{
+    "name": "Bread",
+    "quantity": 8,
+    "deparments": ["Bakery"]
+}
+### 
+
+POST http://localhost:3000/product
+Content-Type: application/json
+
+{
+    "name": "Soy Milk",
+    "quantity": 2,
+    "deparments": ["Dairy"]
+}
+### 
+
+POST http://localhost:3000/product/idddddddddddddddddd
+Content-Type: application/json
+
+{
+    "stars": 2,
+    "review": "Soda was too sugary."
+}
+
+### 
+
+POST http://localhost:3000/product/idddddddddddddddddd
+Content-Type: application/json
+
+{
+    "stars": 3,
+    "review": "The soda didn't tasted old."
+}
+
+### 
+
+GET http://localhost:3000/products
+
+
