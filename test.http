@@ -1,35 +1,32 @@
-POST http://localhost:3000/product
+POST http://localhost:3000/products
 Content-Type: application/json
 
 {
     "name": "Soda",
-    "quantity": 12,
-    "deparments": ["Beverages", "Checkout"]
+    "quantity": 12
 }
 
 ### 
 
-POST http://localhost:3000/product
+POST http://localhost:3000/products
 Content-Type: application/json
 
 {
     "name": "Bread",
-    "quantity": 8,
-    "deparments": ["Bakery"]
+    "quantity": 8
 }
 ### 
 
-POST http://localhost:3000/product
+POST http://localhost:3000/products
 Content-Type: application/json
 
 {
     "name": "Soy Milk",
-    "quantity": 2,
-    "deparments": ["Dairy"]
+    "quantity": 2
 }
 ### 
 
-POST http://localhost:3000/product/idddddddddddddddddd
+POST http://localhost:3000/products/60131dfddf576c3f78023fc7
 Content-Type: application/json
 
 {
@@ -39,7 +36,7 @@ Content-Type: application/json
 
 ### 
 
-POST http://localhost:3000/product/idddddddddddddddddd
+POST http://localhost:3000/products/60131dfddf576c3f78023fc7
 Content-Type: application/json
 
 {
@@ -51,4 +48,49 @@ Content-Type: application/json
 
 GET http://localhost:3000/products
 
+###
 
+GET http://localhost:3000/reviews
+
+###
+
+GET http://localhost:3000/products/601325ba57067415f0ce6f3c
+
+###
+
+GET http://localhost:3000/reviews/601325c157067415f0ce6f3d
+
+###
+
+DELETE http://localhost:3000/products/601325ba57067415f0ce6f3c
+
+###
+
+DELETE http://localhost:3000/reviews/601325c157067415f0ce6f3d
+
+
+
+
+########################################
+
+
+### 
+
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+    "name": "PRODUTO222",
+    "quantity": 2
+}
+### 
+
+POST http://localhost:3000/products/601325ba57067415f0ce6f3c
+Content-Type: application/json
+
+{
+    "stars": 2,
+    "review": "REVIEW222"
+}
+
+### 
