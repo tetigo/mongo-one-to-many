@@ -41,15 +41,19 @@ app.post('/products', (req, res) => {
 })
 
 app.put('/products/:id', (req, res) => {
-    db.Product.findOneAndUpdate({ _id: req.params.id }, req.body, { upsert: true })
+    db.Product.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, upsert: true })
         .then(dbProduct => res.json(dbProduct))
         .catch(err => res.json(err))
 })
 
-app.delete('/products/:id', (req, res) => {
-    db.Product.findOneAndDelete({ _id: req.params.id })
-        .then(dbProduct => res.json(dbProduct))
-        .catch(err => res.json(err))
+app.delete('/products/:id', async (req, res) => {
+    try {
+        const product = await db.Product.findOneAndDelete({_id: req.params.id})
+        const reviews = await db.Review.deleteMany({_id: {$in: product.reviews}})
+        return res.json(reviews)
+    } catch (err) {
+        res.json(err)
+    }
 })
 
 //-------------------------------------------------------------
@@ -71,7 +75,7 @@ app.post('/products/:id', (req, res) => {
     objReview.product = req.params.id
     db.Review.create(objReview)
         .then(dbReview => {
-            return db.Product.findOneAndUpdate({ _id: req.params.id }, { $push: { reviews: dbReview._id } }, { new: true })
+            return db.Product.findOneAndUpdate({ _id: req.params.id }, { $push: { reviews: dbReview._id } }, { new: true, upsert: true })
                 .then(dbProduct => res.json(dbProduct))
                 .catch(err => res.json(err))
 
@@ -79,23 +83,22 @@ app.post('/products/:id', (req, res) => {
 })
 
 app.put('/reviews/:id', (req, res) => {
-    db.Review.findOneAndUpdate({ _id: req.params.id }, req.body, { upsert: false })
+    db.Review.findOneAndUpdate({ _id: req.params.id }, req.body, { new: false, upsert: true })
         .then(dbReview => res.json(dbReview))
         .catch(err => res.json(err))
 })
 
-app.delete('/reviews/:id', (req, res) => {
-    // db.Review.findById({ _id: req.params.id })
-    //     .then(dbReview => {
-    //         db.Product.findOneAndUpdate(
-    //             { _id: dbReview.product },
-    //             { $pull: { reviews: { $in: dbReview.product } } },
-    //             { multi: true }
-    //         )
-    //     })
-    db.Review.findOneAndDelete({ _id: req.params.id })
-        .then(dbReview => res.json(dbReview))
-        .catch(err => res.json(err))
+app.delete('/reviews/:id', async(req, res) => {
+    try {
+        const review = await db.Review.findOneAndDelete({_id: req.params.id})
+        const product = await db.Product.updateOne(
+            {_id: review.product},
+            {$pull: {reviews: review._id}}
+        )
+        return res.json(product)
+    } catch (err) {
+        res.json(err)
+    }
 })
 
 app.listen(PORT, () => console.info('listening on port ' + PORT))

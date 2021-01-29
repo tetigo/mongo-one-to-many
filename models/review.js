@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { db } = require('./product')
 
 const ReviewSchema = new mongoose.Schema({
     stars: {
@@ -16,16 +17,6 @@ const ReviewSchema = new mongoose.Schema({
         ref: 'Product'
     }
 
-})
-
-ReviewSchema.pre('deleteOne', { document: true }, function (next) {
-    const review = this
-    review.model('Product').updateMany(
-        { reviews: review._id },
-        { $pull: { reviews: review._id } },
-        { multi: true },
-        next
-    )
 })
 
 const Review = mongoose.model('Review', ReviewSchema)

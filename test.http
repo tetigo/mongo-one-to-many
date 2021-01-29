@@ -26,7 +26,7 @@ Content-Type: application/json
 }
 ### 
 
-POST http://localhost:3000/products/60131dfddf576c3f78023fc7
+POST http://localhost:3000/products/60137e9e300b1b3fc0ecd4df
 Content-Type: application/json
 
 {
@@ -36,7 +36,7 @@ Content-Type: application/json
 
 ### 
 
-POST http://localhost:3000/products/60131dfddf576c3f78023fc7
+POST http://localhost:3000/products/60137e9e300b1b3fc0ecd4df
 Content-Type: application/json
 
 {
@@ -54,19 +54,19 @@ GET http://localhost:3000/reviews
 
 ###
 
-GET http://localhost:3000/products/601325ba57067415f0ce6f3c
+GET http://localhost:3000/products/60137afda49dd231ac725c9d
 
 ###
 
-GET http://localhost:3000/reviews/601325c157067415f0ce6f3d
+GET http://localhost:3000/reviews/60137b04a49dd231ac725c9e
 
 ###
 
-DELETE http://localhost:3000/products/601325ba57067415f0ce6f3c
+DELETE http://localhost:3000/products/60137a08a49dd231ac725c98
 
 ###
 
-DELETE http://localhost:3000/reviews/601325c157067415f0ce6f3d
+DELETE http://localhost:3000/reviews/60137a25a49dd231ac725c9b
 
 
 
@@ -80,17 +80,35 @@ POST http://localhost:3000/products
 Content-Type: application/json
 
 {
-    "name": "PRODUTO222",
+    "name": "PRODUTO7777",
     "quantity": 2
 }
 ### 
 
-POST http://localhost:3000/products/601325ba57067415f0ce6f3c
+POST http://localhost:3000/products/60137afda49dd231ac725c9d
 Content-Type: application/json
 
 {
     "stars": 2,
-    "review": "REVIEW222"
+    "review": "REVIEW7777"
 }
 
 ### 
+
+PUT http://localhost:3000/products/60137afda49dd231ac725c9d
+Content-Type: application/json
+
+{
+    "name": "produtinho"
+    
+}
+
+####
+
+PUT http://localhost:3000/reviews/60137b04a49dd231ac725c9e
+Content-Type: application/json
+
+{
+    "stars": 6,
+    "review": "Agora foi!!!!"
+}
